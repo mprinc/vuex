@@ -8,7 +8,7 @@ At the center of every Vuex application is the **store**. A <span class='definit
 
 2. <span class='definition'>You cannot directly mutate</span> the store's state. The only way to change a store's state is by <span class='definition'>explicitly **committing mutations**</span>. This ensures <span class='important'>every state change leaves a track-able record</span>, and enables tooling that helps us better understand our applications.
 
-### The Simplest Store
+## The Simplest Store
 
 :::tip NOTE
 We will be using ES2015 syntax for code examples for the rest of the docs. If you haven't picked it up, [you should](https://babeljs.io/docs/learn-es2015/)!
@@ -16,7 +16,7 @@ We will be using ES2015 syntax for code examples for the rest of the docs. If yo
 
 After [installing](../installation.md) Vuex, let's create a store. It is pretty straightforward - just provide an initial state object, and some mutations:
 
-``` js
+```js
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
 
 Now, you can access the state object as `store.state`, and trigger a state change with the `store.commit` method:
 
-``` js
+```js
 store.commit('increment')
 
 console.log(store.state.count) // -> 1
@@ -44,7 +44,7 @@ console.log(store.state.count) // -> 1
 
 In order to have an access to `this.$store` property in your Vue components, you need to provide the created store to Vue instance. Vuex has a mechanism to <span class='definition'>"inject" the store</span> into all child components from the root component <span class='important'>with the `store` option</span>:
 
-``` js
+```js
 new Vue({
   el: '#app',
   store: store,
@@ -64,7 +64,7 @@ new Vue({
 
 Now we can commit a mutation from component's method:
 
-``` js
+```js
 methods: {
   increment() {
     this.$store.commit('increment')

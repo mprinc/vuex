@@ -1,14 +1,18 @@
 # What is Vuex?
 
+::: tip NOTE
+This is the docs for Vuex 3, which works with Vue 2. If you're looking for docs for Vuex 4, which works with Vue 3, [please check it out here](https://next.vuex.vuejs.org/).
+:::
+
 <VideoPreview />
 
 <span class='definition'>Vuex is a **state management pattern + library** for Vue.js applications</span>. It serves as a <span class='important'>centralized store for all the components</span> in an application, with <span class='definition'>rules</span> ensuring that the state can only be mutated in a <span class='important'>predictable fashion</span>. It also integrates with Vue's official [devtools extension](https://github.com/vuejs/vue-devtools) to provide advanced features such as <span class='definition'>zero-config time-travel debugging</span> and <span class='definition'>state snapshot export / import</span>.
 
-### What is a "State Management Pattern"?
+## What is a "State Management Pattern"?
 
 Let's start with a simple Vue counter app:
 
-``` js
+```js
 new Vue({
   // state
   data () {
@@ -58,7 +62,7 @@ If you want to learn Vuex in an interactive way you can check out this [Vuex cou
 
 ![vuex](/vuex.png)
 
-### When Should I Use It?
+## When Should I Use It?
 
 Vuex helps us deal with shared state management with <span class='important'>the cost of more concepts and boilerplate</span>. It's a <span class='important'>trade-off between short term and long term productivity</span>.
 

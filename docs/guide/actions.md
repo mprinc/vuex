@@ -39,7 +39,7 @@ actions: {
 }
 ```
 
-### Dispatching Actions
+## Dispatching Actions
 
 <span class='definition'>Actions are triggered with the `store.dispatch` method</span>:
 
@@ -98,7 +98,7 @@ actions: {
 
 Note we are performing <span class='definition'>a flow of asynchronous operations</span>, and <span class='definition'>recording the side effects (state mutations)</span> of the action by committing them.
 
-### Dispatching Actions in Components
+## Dispatching Actions in Components
 
 You can dispatch actions in components with `this.$store.dispatch('xxx')`, or use the `mapActions` helper which maps component methods to `store.dispatch` calls (requires root `store` injection):
 
@@ -121,7 +121,7 @@ export default {
 }
 ```
 
-### Composing Actions
+## Composing Actions
 
 Actions are often asynchronous, so how do we know when an <span class='important'>action is done</span>? And more importantly, how can we <span class='important'>compose multiple actions together</span> to handle more complex async flows?
 
