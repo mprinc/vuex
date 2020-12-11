@@ -4,8 +4,8 @@
 
 Actions are similar to mutations, the differences being that:
 
-- Instead of mutating the state, actions commit mutations.
-- Actions can contain arbitrary asynchronous operations.
+- Instead of mutating the state, <span class='definition'>actions commit mutations</span>.
+- <span class='important'>Actions can contain arbitrary asynchronous operations</span>.
 
 Let's register a simple action:
 
@@ -27,9 +27,9 @@ const store = new Vuex.Store({
 })
 ```
 
-Action handlers receive a context object which exposes the same set of methods/properties on the store instance, so you can call `context.commit` to commit a mutation, or access the state and getters via `context.state` and `context.getters`. We can even call other actions with `context.dispatch`. We will see why this context object is not the store instance itself when we introduce [Modules](modules.md) later.
+Action handlers receive a <span class='definition'>context object</span> which exposes the same set of methods/properties on the store instance, so you can call `context.commit` to commit a mutation, or access the state and getters via `context.state` and `context.getters`. <span class='important'>We can even call other actions with `context.dispatch`</span>. We will see why this context object is not the store instance itself when we introduce [Modules](modules.md) later.
 
-In practice, we often use ES2015 [argument destructuring](https://github.com/lukehoban/es6features#destructuring) to simplify the code a bit (especially when we need to call `commit` multiple times):
+In practice, we often use <span class='definition'>ES2015 [argument destructuring](https://github.com/lukehoban/es6features#destructuring)</span> to simplify the code a bit (especially when we need to call `commit` multiple times):
 
 ``` js
 actions: {
@@ -41,7 +41,7 @@ actions: {
 
 ### Dispatching Actions
 
-Actions are triggered with the `store.dispatch` method:
+<span class='definition'>Actions are triggered with the `store.dispatch` method</span>:
 
 ``` js
 store.dispatch('increment')
@@ -59,7 +59,7 @@ actions: {
 }
 ```
 
-Actions support the same payload format and object-style dispatch:
+Actions support the same <span class='definition'>payload format</span> and <span class='definition'>object-style dispatch</span>:
 
 ``` js
 // dispatch with a payload
@@ -96,7 +96,7 @@ actions: {
 }
 ```
 
-Note we are performing a flow of asynchronous operations, and recording the side effects (state mutations) of the action by committing them.
+Note we are performing <span class='definition'>a flow of asynchronous operations</span>, and <span class='definition'>recording the side effects (state mutations)</span> of the action by committing them.
 
 ### Dispatching Actions in Components
 
@@ -123,9 +123,9 @@ export default {
 
 ### Composing Actions
 
-Actions are often asynchronous, so how do we know when an action is done? And more importantly, how can we compose multiple actions together to handle more complex async flows?
+Actions are often asynchronous, so how do we know when an <span class='important'>action is done</span>? And more importantly, how can we <span class='important'>compose multiple actions together</span> to handle more complex async flows?
 
-The first thing to know is that `store.dispatch` can handle Promise returned by the triggered action handler and it also returns Promise:
+The first thing to know is that `store.dispatch` can handle <span class='definition'>Promise returned by the triggered action handler</span> and it also returns Promise:
 
 ``` js
 actions: {
@@ -177,4 +177,4 @@ actions: {
 }
 ```
 
-> It's possible for a `store.dispatch` to trigger multiple action handlers in different modules. In such a case the returned value will be a Promise that resolves when all triggered handlers have been resolved.
+> It's possible for a `store.dispatch` to <span class='important'>trigger multiple action handlers in different modules</span>. In such a case the returned value will be a Promise that resolves when all triggered handlers have been resolved.

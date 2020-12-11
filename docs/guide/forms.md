@@ -8,7 +8,7 @@ When using Vuex in strict mode, it could be a bit tricky to use `v-model` on a p
 <input v-model="obj.message">
 ```
 
-Assuming `obj` is a computed property that returns an Object from the store, the `v-model` here will attempt to directly mutate `obj.message` when the user types in the input. In strict mode, this will result in an error because the mutation is not performed inside an explicit Vuex mutation handler.
+Assuming `obj` is a computed property that returns an Object from the store, the `v-model` here will attempt to directly mutate `obj.message` when the user types in the input. <span class='important'>In strict mode, this will result in an error because the mutation is not performed inside an explicit Vuex mutation handler</span>.
 
 The "Vuex way" to deal with it is binding the `<input>`'s value and call a method on the `input` or `change` event:
 
@@ -42,7 +42,7 @@ mutations: {
 
 ### Two-way Computed Property
 
-Admittedly, the above is quite a bit more verbose than `v-model` + local state, and we lose some of the useful features from `v-model` as well. An alternative approach is using a two-way computed property with a setter:
+Admittedly, the above is quite a <span class='definition'>bit more verbose than `v-model` + local state</span>, and we lose some of the useful features from `v-model` as well. An alternative approach is using <span class='definition'>a two-way computed property with a setter</span>:
 
 ``` html
 <input v-model="message">

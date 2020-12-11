@@ -2,11 +2,11 @@
 
 <div class="scrimba"><a href="https://scrimba.com/p/pnyzgAP/cMPa2Uk" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-At the center of every Vuex application is the **store**. A "store" is basically a container that holds your application **state**. There are two things that make a Vuex store different from a plain global object:
+At the center of every Vuex application is the **store**. A <span class='definition'>"store"</span> is basically a container that holds your application **state**. There are two things that make a Vuex store different from a plain global object:
 
-1. Vuex stores are reactive. When Vue components retrieve state from it, they will reactively and efficiently update if the store's state changes.
+1. Vuex stores are <span class='definition'>reactive</span>. When Vue components retrieve state from it, they will reactively and efficiently update if the store's state changes.
 
-2. You cannot directly mutate the store's state. The only way to change a store's state is by explicitly **committing mutations**. This ensures every state change leaves a track-able record, and enables tooling that helps us better understand our applications.
+2. <span class='definition'>You cannot directly mutate</span> the store's state. The only way to change a store's state is by <span class='definition'>explicitly **committing mutations**</span>. This ensures <span class='important'>every state change leaves a track-able record</span>, and enables tooling that helps us better understand our applications.
 
 ### The Simplest Store
 
@@ -42,7 +42,7 @@ store.commit('increment')
 console.log(store.state.count) // -> 1
 ```
 
-In order to have an access to `this.$store` property in your Vue components, you need to provide the created store to Vue instance. Vuex has a mechanism to "inject" the store into all child components from the root component with the `store` option:
+In order to have an access to `this.$store` property in your Vue components, you need to provide the created store to Vue instance. Vuex has a mechanism to <span class='definition'>"inject" the store</span> into all child components from the root component <span class='important'>with the `store` option</span>:
 
 ``` js
 new Vue({
@@ -52,7 +52,7 @@ new Vue({
 ```
 
 :::tip
-If you're using ES6, you can also go for ES6 object property shorthand notation (it's used when object key has the same name as the variable passed-in as a property):
+If you're using ES6, you can also go for <span class='definition'>ES6 object property shorthand notation</span> (it's used when object key has the same name as the variable passed-in as a property):
 
 ```js
 new Vue({
@@ -73,9 +73,9 @@ methods: {
 }
 ```
 
-Again, the reason we are committing a mutation instead of changing `store.state.count` directly, is because we want to explicitly track it. This simple convention makes your intention more explicit, so that you can reason about state changes in your app better when reading the code. In addition, this gives us the opportunity to implement tools that can log every mutation, take state snapshots, or even perform time travel debugging.
+Again<span class='definition'>, the reason we are committing a mutation instead of changing `store.state.count` directly</span>, is because we want to explicitly track it. This simple convention <span class='important'>makes your intention more explicit, so that you can reason about state changes in your app better when reading the code</span>. In addition, this gives us the opportunity to implement <span class='important'>tools that can log every mutation, take state snapshots, or even perform time travel debugging</span>.
 
-Using store state in a component simply involves returning the state within a computed property, because the store state is reactive. Triggering changes simply means committing mutations in component methods.
+<span class='definition'>Using store state in a component</span> simply involves returning the state within a computed property, because the <span class='important'>store state is reactive</span>. Triggering changes simply means committing mutations in component methods.
 
 Here's an example of the [most basic Vuex counter app](https://jsfiddle.net/n9jmu5v7/1269/).
 

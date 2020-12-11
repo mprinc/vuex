@@ -2,7 +2,7 @@
 
 <div class="scrimba"><a href="https://scrimba.com/p/pnyzgAP/cvp8ZkCR" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-Vuex stores accept the `plugins` option that exposes hooks for each mutation. A Vuex plugin is simply a function that receives the store as the only argument:
+Vuex stores accept the `plugins` option that <span class='definition'>exposes hooks for each mutation</span>. A Vuex plugin is simply a function that receives the store as the only argument:
 
 ``` js
 const myPlugin = store => {
@@ -25,9 +25,9 @@ const store = new Vuex.Store({
 
 ### Committing Mutations Inside Plugins
 
-Plugins are not allowed to directly mutate state - similar to your components, they can only trigger changes by committing mutations.
+<span class='important'>Plugins are not allowed to directly mutate state</span> - similar to your components, they can only trigger changes by committing mutations.
 
-By committing mutations, a plugin can be used to sync a data source to the store. For example, to sync a websocket data source to the store (this is just a contrived example, in reality the `createWebSocketPlugin` function can take some additional options for more complex tasks):
+By committing mutations, a plugin can be used to <span class='comment' data-comment='In a way it is a side-effect; the real data exists in the store, and plugin passthrough any change on the data outside, and passthrough any outside change to the store'>sync a data source to the store</span>. For example, to sync a websocket data source to the store (this is just a contrived example, in reality the `createWebSocketPlugin` function can take some additional options for more complex tasks):
 
 ``` js
 export default function createWebSocketPlugin (socket) {

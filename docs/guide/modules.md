@@ -2,9 +2,9 @@
 
 <div class="scrimba"><a href="https://scrimba.com/p/pnyzgAP/cqKK4psq" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-Due to using a single state tree, all state of our application is contained inside one big object. However, as our application grows in scale, the store can get really bloated.
+Due to using <span class='definition'>a single state tree</span>, all state of our application is contained inside one big object. However, as our application grows in scale, the store can get really bloated.
 
-To help with that, Vuex allows us to divide our store into **modules**. Each module can contain its own state, mutations, actions, getters, and even nested modules - it's fractal all the way down:
+To help with that, Vuex allows us to <span class='definition'>divide our store into **modules**</span>. Each module can contain its <span class='important'>own state, mutations, actions, getters, and even nested modules</span> - it's fractal all the way down:
 
 ``` js
 const moduleA = {
@@ -55,7 +55,7 @@ const moduleA = {
 }
 ```
 
-Similarly, inside module actions, `context.state` will expose the local state, and root state will be exposed as `context.rootState`:
+Similarly, inside module actions, `context.state` will expose the local state, and <span class='definition'>root state</span> will be exposed as `context.rootState`:
 
 ``` js
 const moduleA = {
@@ -85,9 +85,9 @@ const moduleA = {
 
 ### Namespacing
 
-By default, actions, mutations and getters inside modules are still registered under the **global namespace** - this allows multiple modules to react to the same mutation/action type.
+By default, actions, mutations and getters inside modules are still registered under the <span class='definition'>**global namespace**</span> - this allows <span class='important'>multiple modules to react to the same mutation/action type</span>.
 
-If you want your modules to be more self-contained or reusable, you can mark it as namespaced with `namespaced: true`. When the module is registered, all of its getters, actions and mutations will be automatically namespaced based on the path the module is registered at. For example:
+If you want your modules to be <span class='important'>more self-contained or reusable</span>, you can mark it as namespaced with `namespaced: true`. When the module is registered, all of its getters, actions and mutations will be automatically namespaced based on the path the module is registered at. For example:
 
 ``` js
 const store = new Vuex.Store({
@@ -138,7 +138,7 @@ Namespaced getters and actions will receive localized `getters`, `dispatch` and 
 
 If you want to use global state and getters, `rootState` and `rootGetters` are passed as the 3rd and 4th arguments to getter functions, and also exposed as properties on the `context` object passed to action functions.
 
-To dispatch actions or commit mutations in the global namespace, pass `{ root: true }` as the 3rd argument to `dispatch` and `commit`.
+<span class='important'>To dispatch actions or commit mutations in the global namespace, pass `{ root: true }`</span> as the 3rd argument to `dispatch` and `commit`.
 
 ``` js
 modules: {
@@ -178,7 +178,7 @@ modules: {
 
 #### Register Global Action in Namespaced Modules
 
-If you want to register global actions in namespaced modules, you can mark it with `root: true` and place the action definition to function `handler`. For example:
+If you want to <span class='definition'>register global actions in namespaced modules</span>, you can mark it with `root: true` and place the action definition to function `handler`. For example:
 
 ``` js
 {
@@ -225,7 +225,7 @@ methods: {
 }
 ```
 
-In such cases, you can pass the module namespace string as the first argument to the helpers so that all bindings are done using that module as the context. The above can be simplified to:
+In such cases, you can <span class='important'>pass the module namespace string as the first argument</span> to the helpers so that all bindings are done using that module as the context. The above can be simplified to:
 
 ``` js
 computed: {
@@ -246,7 +246,7 @@ methods: {
 }
 ```
 
-Furthermore, you can create namespaced helpers by using `createNamespacedHelpers`. It returns an object having new component binding helpers that are bound with the given namespace value:
+Furthermore, you can create <span class='definition'>namespaced helpers</span> by using `createNamespacedHelpers`. It returns an object having new component binding helpers that are bound with the given namespace value:
 
 ``` js
 import { createNamespacedHelpers } from 'vuex'
@@ -273,7 +273,7 @@ export default {
 
 #### Caveat for Plugin Developers
 
-You may care about unpredictable namespacing for your modules when you create a [plugin](plugins.md) that provides the modules and let users add them to a Vuex store. Your modules will be also namespaced if the plugin users add your modules under a namespaced module. To adapt this situation, you may need to receive a namespace value via your plugin option:
+You may care about <span class='definition'>unpredictable namespacing</span> for your modules when you create a [plugin](plugins.md) that provides the modules and let users add them to a Vuex store. <span class='important'>Your modules will be also namespaced if the plugin users add your modules under a namespaced module</span>. To adapt this situation, you may need to receive a namespace value via your plugin option:
 
 ``` js
 // get namespace value via plugin option
@@ -289,7 +289,7 @@ export function createPlugin (options = {}) {
 
 ### Dynamic Module Registration
 
-You can register a module **after** the store has been created with the `store.registerModule` method:
+You can <span class='important'>register a module **after** the store has been created</span> with the `store.registerModule` method:
 
 ``` js
 import Vuex from 'vuex'
@@ -309,21 +309,21 @@ store.registerModule(['nested', 'myModule'], {
 
 The module's state will be exposed as `store.state.myModule` and `store.state.nested.myModule`.
 
-Dynamic module registration makes it possible for other Vue plugins to also leverage Vuex for state management by attaching a module to the application's store. For example, the [`vuex-router-sync`](https://github.com/vuejs/vuex-router-sync) library integrates vue-router with vuex by managing the application's route state in a dynamically attached module.
+<span class='important'>Dynamic module registration makes it possible for other Vue plugins to also leverage Vuex for state management by attaching a module to the application's store</span>. For example, the [`vuex-router-sync`](https://github.com/vuejs/vuex-router-sync) library integrates vue-router with vuex by <span class='important'>managing the application's route state in a dynamically attached module</span>.
 
-You can also remove a dynamically registered module with `store.unregisterModule(moduleName)`. Note you cannot remove static modules (declared at store creation) with this method.
+You can also <span class='definition'>remove a dynamically registered module</span> with `store.unregisterModule(moduleName)`. Note you cannot remove static modules (declared at store creation) with this method.
 
-Note that you may check if the module is already registered to the store or not via `store.hasModule(moduleName)` method.
+Note that you may <span class='definition'>check if the module is already registered</span> to the store or not via `store.hasModule(moduleName)` method.
 
 #### Preserving state
 
-It may be likely that you want to preserve the previous state when registering a new module, such as preserving state from a Server Side Rendered app. You can achieve this with `preserveState` option: `store.registerModule('a', module, { preserveState: true })`
+It may be likely that you want to <span class='definition'>preserve the previous state</span> when registering a new module, such as preserving state from a Server Side Rendered app. You can achieve this with `preserveState` option: `store.registerModule('a', module, { preserveState: true })`
 
 When you set `preserveState: true`, the module is registered, actions, mutations and getters are added to the store, but the state is not. It's assumed that your store state already contains state for that module and you don't want to overwrite it.
 
 ### Module Reuse
 
-Sometimes we may need to create multiple instances of a module, for example:
+Sometimes we may need to <span class='definition'>create multiple instances of a module</span>, for example:
 
 - Creating multiple stores that use the same module (e.g. To [avoid stateful singletons in the SSR](https://ssr.vuejs.org/en/structure.html#avoid-stateful-singletons) when the `runInNewContext` option is `false` or `'once'`);
 - Register the same module multiple times in the same store.

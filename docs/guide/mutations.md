@@ -2,7 +2,7 @@
 
 <div class="scrimba"><a href="https://scrimba.com/p/pnyzgAP/ckMZp4HN" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
 
-The only way to actually change state in a Vuex store is by committing a mutation. Vuex mutations are very similar to events: each mutation has a string **type** and a **handler**. The handler function is where we perform actual state modifications, and it will receive the state as the first argument:
+<span class='important'>The only way to actually change state in a Vuex store is by committing a mutation</span>. Vuex mutations are very similar to events: each mutation has a string **type** and a **handler**. The <span class='definition'>handler function</span> is where we perform actual state modifications, and it will receive the state as the first argument:
 
 ``` js
 const store = new Vuex.Store({
@@ -18,7 +18,7 @@ const store = new Vuex.Store({
 })
 ```
 
-You cannot directly call a mutation handler. Think of it more like event registration: "When a mutation with type `increment` is triggered, call this handler." To invoke a mutation handler, you need to call `store.commit` with its type:
+<span class='important'>You cannot directly call a mutation handler</span>. Think of it more like event registration: "When a mutation with type `increment` is triggered, call this handler." To invoke a mutation handler, you need to call `store.commit` with its type:
 
 ``` js
 store.commit('increment')
@@ -26,7 +26,7 @@ store.commit('increment')
 
 ### Commit with Payload
 
-You can pass an additional argument to `store.commit`, which is called the **payload** for the mutation:
+You can pass an additional argument to `store.commit`, which is called the <span class='definition'>**payload** for the mutation</span>:
 
 ``` js
 // ...
@@ -40,7 +40,7 @@ mutations: {
 store.commit('increment', 10)
 ```
 
-In most cases, the payload should be an object so that it can contain multiple fields, and the recorded mutation will also be more descriptive:
+In most cases, <span class='important'>the payload should be an object</span> so that it can contain multiple fields, and the recorded mutation will also be more descriptive:
 
 ``` js
 // ...
@@ -68,7 +68,7 @@ store.commit({
 })
 ```
 
-When using object-style commit, the entire object will be passed as the payload to mutation handlers, so the handler remains the same:
+When using <span class='definition'>object-style commit</span>, the entire object will be passed as the payload to mutation handlers, so the handler remains the same:
 
 ``` js
 mutations: {
@@ -80,15 +80,15 @@ mutations: {
 
 ### Mutations Follow Vue's Reactivity Rules
 
-Since a Vuex store's state is made reactive by Vue, when we mutate the state, Vue components observing the state will update automatically. This also means Vuex mutations are subject to the same reactivity caveats when working with plain Vue:
+Since a <span class='important'>Vuex store's state is made reactive by Vue</span>, when we mutate the state, Vue components observing the state will update automatically. This also means <span class='definition'>Vuex mutations are subject to the same reactivity caveats</span> when working with plain Vue:
 
-1. Prefer initializing your store's initial state with all desired fields upfront.
+1. Prefer <span class='important'>initializing your store's initial state with all desired fields upfront</span>.
 
-2. When adding new properties to an Object, you should either:
+2. <span class='definition'>When adding new properties to an Object</span>, you should either:
 
-  - Use `Vue.set(obj, 'newProp', 123)`, or
+  - Use <span class='definition'>`Vue.set(obj, 'newProp', 123)`</span>, or
 
-  - Replace that Object with a fresh one. For example, using the [object spread syntax](https://github.com/tc39/proposal-object-rest-spread) we can write it like this:
+  - <span class='definition'>Replace that Object</span> with a fresh one. For example, using the [object spread syntax](https://github.com/tc39/proposal-object-rest-spread) we can write it like this:
 
     ``` js
     state.obj = { ...state.obj, newProp: 123 }
@@ -124,7 +124,7 @@ Whether to use constants is largely a preference - it can be helpful in large pr
 
 ### Mutations Must Be Synchronous
 
-One important rule to remember is that **mutation handler functions must be synchronous**. Why? Consider the following example:
+One important rule to remember is that <span class='important'>**mutation handler functions must be synchronous**</span>. Why? Consider the following example:
 
 ``` js
 mutations: {
@@ -136,7 +136,7 @@ mutations: {
 }
 ```
 
-Now imagine we are debugging the app and looking at the devtool's mutation logs. For every mutation logged, the devtool will need to capture a "before" and "after" snapshots of the state. However, the asynchronous callback inside the example mutation above makes that impossible: the callback is not called yet when the mutation is committed, and there's no way for the devtool to know when the callback will actually be called - any state mutation performed in the callback is essentially un-trackable!
+Now imagine we are debugging the app and looking at the devtool's mutation logs. For every mutation logged, <span class='important'>the devtool will need to capture a "before" and "after" snapshots of the state</span>. However, the asynchronous callback inside the example mutation above makes that impossible: the callback is not called yet when the mutation is committed, and there's no way for the devtool to know when the callback will actually be called - <span class='important'>any state mutation performed in the callback is essentially un-trackable</span>!
 
 ### Committing Mutations in Components
 
@@ -163,7 +163,7 @@ export default {
 
 ### On to Actions
 
-Asynchronicity combined with state mutation can make your program very hard to reason about. For example, when you call two methods both with async callbacks that mutate the state, how do you know when they are called and which callback was called first? This is exactly why we want to separate the two concepts. In Vuex, **mutations are synchronous transactions**:
+Asynchronicity combined with state mutation can make your program very hard to reason about. For example, when you call two methods both with async callbacks that mutate the state, how do you know when they are called and which callback was called first? This is exactly why we want to separate the two concepts. <span class='definition'>In Vuex, **mutations are synchronous transactions**</span>:
 
 ``` js
 store.commit('increment')
